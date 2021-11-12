@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 
 
-namespace FoundWorldInside
+namespace FoundWordInside
 {
     class MainClass
     {
@@ -14,10 +14,10 @@ namespace FoundWorldInside
         private static void Main(string[] args)
         {
              FillingInTheDictionary();
-            BreakWorld(@"C:\Users\Yurii Shymko\OneDrive\Рабочий стол\worldsForCheck.txt", @"C:\Users\Yurii Shymko\OneDrive\Рабочий стол\BreakedWorld.txt");
+            BreakWord(@"C:\Users\Yurii Shymko\OneDrive\Рабочий стол\worldsForCheck.txt", @"C:\Users\Yurii Shymko\OneDrive\Рабочий стол\BreakedWorld.txt");
         }
 
-        private static void BreakWorld(string FileWithWorldToCheck, string FileToWriteBreakedWorld = @"C:\Users\Yurii Shymko\OneDrive\Рабочий стол\BreakedWorld.txt")
+        private static void BreakWord(string FileWithWorldToCheck, string FileToWriteBreakedWorld = @"C:\Users\Yurii Shymko\OneDrive\Рабочий стол\BreakedWorld.txt")
         {
             string[] ArrWithNonBreakingWorls = File.ReadAllLines(FileWithWorldToCheck);
             for (int i = 0; i < ArrWithNonBreakingWorls.Length; i++)
