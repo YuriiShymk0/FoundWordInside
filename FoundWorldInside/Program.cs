@@ -17,22 +17,22 @@ namespace FoundWordInside
             BreakWord(@"C:\Users\Yurii Shymko\OneDrive\Рабочий стол\worldsForCheck.txt", @"C:\Users\Yurii Shymko\OneDrive\Рабочий стол\BreakedWorld.txt");
         }
 
-        private static void BreakWord(string FileWithWorldToCheck, string FileToWriteBreakedWorld = @"C:\Users\Yurii Shymko\OneDrive\Рабочий стол\BreakedWorld.txt")
+        private static void BreakWord(string FileWithWordToCheck, string FileToWriteBreakedWord = @"C:\Users\Yurii Shymko\OneDrive\Рабочий стол\BreakedWorld.txt")
         {
-            string[] ArrWithNonBreakingWorls = File.ReadAllLines(FileWithWorldToCheck);
-            for (int i = 0; i < ArrWithNonBreakingWorls.Length; i++)
+            string[] ArrWithNonBreakingWords = File.ReadAllLines(FileWithWordToCheck);
+            for (int i = 0; i < ArrWithNonBreakingWords.Length; i++)
             {
                 StringBuilder sb = new StringBuilder();
 
-                string item = ArrWithNonBreakingWorls[i].ToLower();
+                string item = ArrWithNonBreakingWords[i].ToLower();
                 int length = 0; ;
-                while (length < ArrWithNonBreakingWorls[i].Length)
+                while (length < ArrWithNonBreakingWords[i].Length)
                 {
                     if (dictionaryWithSimpleWorld.ContainsValue(item))
                     {
                         sb.Append(item + ",");
                         length += item.Length;
-                        item = ArrWithNonBreakingWorls[i].ToLower().Substring(item.Length);
+                        item = ArrWithNonBreakingWords[i].ToLower().Substring(item.Length);
                        
                     }
                     else
@@ -43,13 +43,13 @@ namespace FoundWordInside
                         }
                         else
                         {
-                            sb.Append(ArrWithNonBreakingWorls[i].ToLower());
+                            sb.Append(ArrWithNonBreakingWords[i].ToLower());
                             break;
                         }
                        
                     }
                 }
-                File.AppendAllText(FileToWriteBreakedWorld, $"(in){ArrWithNonBreakingWorls[i]} -> (out){sb.ToString().TrimEnd(new char[] { ',' })}" + "\n");
+                File.AppendAllText(FileToWriteBreakedWord, $"(in){ArrWithNonBreakingWords[i]} -> (out){sb.ToString().TrimEnd(new char[] { ',' })}" + "\n");
             }
         }
 
