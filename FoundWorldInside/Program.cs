@@ -23,23 +23,42 @@ namespace FoundWordInside
             for (int i = 0; i < ArrWithNonBreakingWords.Length; i++)
             {
                 StringBuilder sb = new StringBuilder();
-                string wordForCheck = ArrWithNonBreakingWords[i].ToLower();
-
-                for (int j = 0; j < wordForCheck.Length;)
+                string wordForCheck = ArrWithNonBreakingWords[i].ToLower().Trim();
+                int a = 0;
+                int b = 0;
+                int c = 0;
+                for (int j = 0; j < ArrWithNonBreakingWords[i].Length;)
                 {
                     if (dictionaryWithSimpleWorld.ContainsValue(wordForCheck))
                     {
+                        b = wordForCheck.Length;
                         sb.Append(wordForCheck + ',');
+                        c++;
                         j += wordForCheck.Length;
+                        wordForCheck = ArrWithNonBreakingWords[i].Substring(wordForCheck.Length + a);
+                        a += b;
                     }
                     else
                     {
-                        wordForCheck = wordForCheck.Substring(0, wordForCheck.Length - 1);
+                        if (wordForCheck.Length > 0)
+                        {
+                            wordForCheck = wordForCheck.Substring(0, wordForCheck.Length - 1);
+                        }
+                        else
+                        {
+                            break;
+                        }
                     }
-
                 }
-                string str = ArrWithNonBreakingWords[i].Trim(sb.ToString().ToCharArray());
-                File.AppendAllText(FileToWriteBreakedWord, $"(in){ArrWithNonBreakingWords[i]} -> (out){(sb.ToString() + str).TrimEnd(new char[] {' ',','})}" + "\n");
+                string str = ArrWithNonBreakingWords[i].Substring(sb.ToString().Length-c);
+                if (str != "" && str.Length >= 1 )
+                {
+                    File.AppendAllText(FileToWriteBreakedWord, $"(in){ArrWithNonBreakingWords[i]} -> (out){ArrWithNonBreakingWords[i]}" + "\n");
+                }
+                else
+                {
+                    File.AppendAllText(FileToWriteBreakedWord, $"(in){ArrWithNonBreakingWords[i]} -> (out){(sb.ToString() + str).TrimEnd(new char[] { ' ', ',' })}" + "\n");
+                }
             }
         }
 
