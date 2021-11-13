@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31829.152
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoundWorldInside", "FoundWorldInside\FoundWorldInside.csproj", "{EE921E76-C3D1-4CE1-9AFC-96E4CCA91A41}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoundWordInside", "FoundWorldInside\FoundWordInside.csproj", "{EE921E76-C3D1-4CE1-9AFC-96E4CCA91A41}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

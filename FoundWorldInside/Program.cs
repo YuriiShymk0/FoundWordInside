@@ -13,53 +13,44 @@ namespace FoundWordInside
 
         private static void Main(string[] args)
         {
-             FillingInTheDictionary();
-            BreakWord(@"C:\Users\Yurii Shymko\OneDrive\Рабочий стол\worldsForCheck.txt", @"C:\Users\Yurii Shymko\OneDrive\Рабочий стол\BreakedWorld.txt");
+            FillingInTheDictionary();
+            BreakWord(@"C:\Users\Yurii Shymko\OneDrive\Рабочий стол\wordsForCheck.txt", @"C:\Users\Yurii Shymko\OneDrive\Рабочий стол\BreakedWord.txt");
         }
 
-        private static void BreakWord(string FileWithWordToCheck, string FileToWriteBreakedWord = @"C:\Users\Yurii Shymko\OneDrive\Рабочий стол\BreakedWorld.txt")
+        private static void BreakWord(string FileWithWordToCheck, string FileToWriteBreakedWord = @"C:\Users\Yurii Shymko\OneDrive\Рабочий стол\BreakedWord.txt")
         {
             string[] ArrWithNonBreakingWords = File.ReadAllLines(FileWithWordToCheck);
             for (int i = 0; i < ArrWithNonBreakingWords.Length; i++)
             {
                 StringBuilder sb = new StringBuilder();
+                string wordForCheck = ArrWithNonBreakingWords[i].ToLower();
 
-                string item = ArrWithNonBreakingWords[i].ToLower();
-                int length = 0; ;
-                while (length < ArrWithNonBreakingWords[i].Length)
+                for (int j = 0; j < wordForCheck.Length;)
                 {
-                    if (dictionaryWithSimpleWorld.ContainsValue(item))
+                    if (dictionaryWithSimpleWorld.ContainsValue(wordForCheck))
                     {
-                        sb.Append(item + ",");
-                        length += item.Length;
-                        item = ArrWithNonBreakingWords[i].ToLower().Substring(item.Length);
-                       
+                        sb.Append(wordForCheck + ',');
+                        j += wordForCheck.Length;
                     }
                     else
                     {
-                        if (item.Length > 0)
-                        {
-                            item = item.Substring(0, item.Length - 1);
-                        }
-                        else
-                        {
-                            sb.Append(ArrWithNonBreakingWords[i].ToLower());
-                            break;
-                        }
-                       
+                        wordForCheck = wordForCheck.Substring(0, wordForCheck.Length - 1);
                     }
+
                 }
-                File.AppendAllText(FileToWriteBreakedWord, $"(in){ArrWithNonBreakingWords[i]} -> (out){sb.ToString().TrimEnd(new char[] { ',' })}" + "\n");
+                string str = ArrWithNonBreakingWords[i].Trim(sb.ToString().ToCharArray());
+                File.AppendAllText(FileToWriteBreakedWord, $"(in){ArrWithNonBreakingWords[i]} -> (out){(sb.ToString() + str).TrimEnd(new char[] {' ',','})}" + "\n");
             }
         }
+
 
         private static void FillingInTheDictionary()
         {
             int a = 0; //позбутися змінної
-            dictionaryWithSimpleWorld = File.ReadAllLines(@"C:\Users\Yurii Shymko\source\Repos\FoundWorldInside\FoundWorldInside\GermanWorld.txt") //зробити шлях універсальним
+            dictionaryWithSimpleWorld = File.ReadAllLines(@"C:\Users\Yurii Shymko\source\Repos\FoundWorldInside\FoundWorldInside\GermanWord.txt") //зробити шлях універсальним
             .Select(x => x)
             .ToDictionary(y => a++, x => x.ToLower());
         }
-
     }
 }
+
